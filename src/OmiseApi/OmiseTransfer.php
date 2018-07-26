@@ -23,9 +23,19 @@ class OmiseTransfer extends OmiseApiResource
     }
 
     /**
+     * @param  string $id
+     *
+     * @return string
+     */
+    private static function getUrl($id = '')
+    {
+        return OMISE_API_URL . self::ENDPOINT . '/' . $id;
+    }
+
+    /**
      * Creates a transfer.
      *
-     * @param  mixed  $params
+     * @param  mixed $params
      * @param  string $publickey
      * @param  string $secretkey
      *
@@ -86,15 +96,5 @@ class OmiseTransfer extends OmiseApiResource
     public function isDestroyed()
     {
         return parent::isDestroyed();
-    }
-
-    /**
-     * @param  string $id
-     *
-     * @return string
-     */
-    private static function getUrl($id = '')
-    {
-        return OMISE_API_URL.self::ENDPOINT.'/'.$id;
     }
 }

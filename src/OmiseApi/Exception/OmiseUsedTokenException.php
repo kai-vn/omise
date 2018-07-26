@@ -2,4 +2,6 @@
 
 namespace OmiseApi\Exception;
 
-class OmiseUsedTokenException extends OmiseException { }
+class OmiseUsedTokenException extends OmiseException
+{
+}

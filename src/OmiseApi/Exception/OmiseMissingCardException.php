@@ -2,4 +2,6 @@
 
 namespace OmiseApi\Exception;
 
-class OmiseMissingCardException extends OmiseException { }
+class OmiseMissingCardException extends OmiseException
+{
+}

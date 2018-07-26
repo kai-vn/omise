@@ -40,7 +40,7 @@ class OmiseObject implements ArrayAccess, Iterator, Countable
     /**
      * Reload the object.
      *
-     * @param array   $values
+     * @param array $values
      * @param boolean $clear
      */
     public function refresh($values, $clear = false)
@@ -79,11 +79,6 @@ class OmiseObject implements ArrayAccess, Iterator, Countable
         reset($this->_values);
     }
 
-    public function current()
-    {
-        return current($this->_values);
-    }
-
     public function key()
     {
         return key($this->_values);
@@ -99,7 +94,13 @@ class OmiseObject implements ArrayAccess, Iterator, Countable
         return ($this->current() !== false);
     }
 
+    public function current()
+    {
+        return current($this->_values);
+    }
+
     // Override methods of Countable
+
     public function count()
     {
         return count($this->_values);

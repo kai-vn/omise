@@ -2,4 +2,6 @@
 
 namespace OmiseApi\Exception;
 
-class OmiseFailedFraudCheckException extends OmiseException { }
+class OmiseFailedFraudCheckException extends OmiseException
+{
+}

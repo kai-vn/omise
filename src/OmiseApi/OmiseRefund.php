@@ -7,7 +7,7 @@ use OmiseApi\Res\OmiseApiResource;
 class OmiseRefund extends OmiseApiResource
 {
     /**
-     * @param array  $refund
+     * @param array $refund
      * @param string $publickey
      * @param string $secretkey
      */

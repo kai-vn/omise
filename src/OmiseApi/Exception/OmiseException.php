@@ -63,16 +63,6 @@ class OmiseException extends Exception
     }
 
     /**
-     * Sets the error.
-     *
-     * @param OmiseError $omiseError
-     */
-    public function setOmiseError($omiseError)
-    {
-        $this->_omiseError = $omiseError;
-    }
-
-    /**
      * Gets the OmiseError object. This method will return null if an error happens outside of the API. (For example, due to HTTP connectivity problem.)
      * Please see https://docs.omise.co/api/errors/ for a list of possible errors.
      *
@@ -81,5 +71,15 @@ class OmiseException extends Exception
     public function getOmiseError()
     {
         return $this->_omiseError;
+    }
+
+    /**
+     * Sets the error.
+     *
+     * @param OmiseError $omiseError
+     */
+    public function setOmiseError($omiseError)
+    {
+        $this->_omiseError = $omiseError;
     }
 }

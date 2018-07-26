@@ -2,4 +2,6 @@
 
 namespace OmiseApi\Exception;
 
-class OmiseInvalidChargeException extends OmiseException { }
+class OmiseInvalidChargeException extends OmiseException
+{
+}

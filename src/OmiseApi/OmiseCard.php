@@ -3,7 +3,6 @@
 namespace OmiseApi;
 
 use OmiseApi\Res\OmiseApiResource;
-use OmiseApi\OmiseCustomer;
 
 class OmiseCard extends OmiseApiResource
 {
@@ -14,7 +13,7 @@ class OmiseCard extends OmiseApiResource
     /**
      * Object representing a card. Cards are retrieved using a `Customer`.
      *
-     * @param array  $array
+     * @param array $array
      * @param string $customerID
      * @param string $publickey
      * @param string $secretkey
@@ -35,6 +34,16 @@ class OmiseCard extends OmiseApiResource
     public function reload()
     {
         parent::g_reload($this->getUrl($this['id']));
+    }
+
+    /**
+     * @param  string $cardID
+     *
+     * @return string
+     */
+    private function getUrl($cardID = '')
+    {
+        return OMISE_API_URL . OmiseCustomer::ENDPOINT . '/' . $this->_customerID . '/' . self::ENDPOINT . '/' . $cardID;
     }
 
     /**
@@ -65,15 +74,5 @@ class OmiseCard extends OmiseApiResource
     public function isDestroyed()
     {
         return parent::isDestroyed();
-    }
-
-    /**
-     * @param  string $cardID
-     *
-     * @return string
-     */
-    private function getUrl($cardID = '')
-    {
-        return OMISE_API_URL.OmiseCustomer::ENDPOINT.'/'.$this->_customerID.'/'.self::ENDPOINT.'/'.$cardID;
     }
 }

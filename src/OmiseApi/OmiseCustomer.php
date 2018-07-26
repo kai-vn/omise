@@ -3,7 +3,6 @@
 namespace OmiseApi;
 
 use OmiseApi\Res\OmiseApiResource;
-use OmiseApi\OmiseCardList;
 
 class OmiseCustomer extends OmiseApiResource
 {
@@ -24,9 +23,19 @@ class OmiseCustomer extends OmiseApiResource
     }
 
     /**
+     * @param  string $id
+     *
+     * @return string
+     */
+    private static function getUrl($id = '')
+    {
+        return OMISE_API_URL . self::ENDPOINT . '/' . $id;
+    }
+
+    /**
      * Creates a new customer.
      *
-     * @param  array  $params
+     * @param  array $params
      * @param  string $publickey
      * @param  string $secretkey
      *
@@ -82,22 +91,6 @@ class OmiseCustomer extends OmiseApiResource
     }
 
     /**
-     * Gets a list of all cards belongs to this customer.
-     *
-     * @param  array $options
-     *
-     * @return OmiseCardList
-     */
-    public function cards($options = array())
-    {
-        if ($this['object'] === 'customer' && ! empty($options)) {
-            return new OmiseCardList($this['cards'], $this['id'], $options, $this->_publickey, $this->_secretkey);
-        } else if ($this['object'] === 'customer') {
-            return new OmiseCardList($this['cards'], $this['id'], $this->_publickey, $this->_secretkey);
-        }
-    }
-  
-    /**
      * cards() alias
      *
      * @deprecated deprecated since version 2.0.0 use '$customer->cards()'
@@ -110,12 +103,20 @@ class OmiseCustomer extends OmiseApiResource
     }
 
     /**
-     * @param  string $id
+     * Gets a list of all cards belongs to this customer.
      *
-     * @return string
+     * @param  array $options
+     *
+     * @return OmiseCardList
      */
-    private static function getUrl($id = '')
+    public function cards($options = array())
     {
-        return OMISE_API_URL.self::ENDPOINT.'/'.$id;
+        if ($this['object'] === 'customer' && !empty($options)) {
+            return new OmiseCardList($this['cards'], $this['id'], $options, $this->_publickey, $this->_secretkey);
+        } else {
+            if ($this['object'] === 'customer') {
+                return new OmiseCardList($this['cards'], $this['id'], $this->_publickey, $this->_secretkey);
+            }
+        }
     }
 }

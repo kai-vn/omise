@@ -23,23 +23,19 @@ class OmiseLink extends OmiseApiResource
     }
 
     /**
-     * (non-PHPdoc)
+     * @param  string $id
      *
-     * @see OmiseApiResource::g_reload()
+     * @return string
      */
-    public function reload()
+    private static function getUrl($id = '')
     {
-        if ($this['object'] === 'link') {
-            parent::g_reload(self::getUrl($this['id']));
-        } else {
-            parent::g_reload(self::getUrl());
-        }
+        return OMISE_API_URL . self::ENDPOINT . '/' . $id;
     }
 
     /**
      * Creates a new link.
      *
-     * @param  array  $params
+     * @param  array $params
      * @param  string $publickey
      * @param  string $secretkey
      *
@@ -51,12 +47,16 @@ class OmiseLink extends OmiseApiResource
     }
 
     /**
-     * @param  string $id
+     * (non-PHPdoc)
      *
-     * @return string
+     * @see OmiseApiResource::g_reload()
      */
-    private static function getUrl($id = '')
+    public function reload()
     {
-        return OMISE_API_URL.self::ENDPOINT.'/'.$id;
+        if ($this['object'] === 'link') {
+            parent::g_reload(self::getUrl($this['id']));
+        } else {
+            parent::g_reload(self::getUrl());
+        }
     }
 }

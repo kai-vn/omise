@@ -3,7 +3,6 @@
 namespace OmiseApi;
 
 use OmiseApi\Res\OmiseApiResource;
-use OmiseApi\OmiseRefundList;
 
 class OmiseCharge extends OmiseApiResource
 {
@@ -23,9 +22,35 @@ class OmiseCharge extends OmiseApiResource
         return parent::g_retrieve(get_class(), self::getUrl($id), $publickey, $secretkey);
     }
 
-    public static function retrieve_dtac($id = '',$isproxy,$proxyurl,$key)
+    /**
+     * @param  string $id
+     *
+     * @return string
+     */
+    private static function getUrl($id = '')
     {
-        return parent::g_retrieve_dtac(get_class(), self::getUrl($id) ,$isproxy,$proxyurl,$key);
+        return OMISE_API_URL . self::ENDPOINT . '/' . $id;
+    }
+
+    public static function retrieve_dtac($id = '', $isproxy, $proxyurl, $key)
+    {
+        return parent::g_retrieve_dtac(get_class(), self::getUrl($id), $isproxy, $proxyurl, $key);
+    }
+
+    /**
+     * Creates a new charge.
+     *
+     * @param  array $params
+     * @param  string $publickey
+     * @param  string $secretkey
+     *
+     * @return OmiseCharge
+     */
+    public static function create($params, $url, $isproxy, $proxyurl)
+    {
+        //get Token from Dtac
+        // return parent::g_create(get_class(), self::getUrl(), $params, $publickey, $secretkey);
+        return parent::dtac_create(get_class(), $params, $url, $isproxy, $proxyurl);
     }
 
     /**
@@ -40,22 +65,6 @@ class OmiseCharge extends OmiseApiResource
         } else {
             parent::g_reload(self::getUrl());
         }
-    }
-
-    /**
-     * Creates a new charge.
-     *
-     * @param  array  $params
-     * @param  string $publickey
-     * @param  string $secretkey
-     *
-     * @return OmiseCharge
-     */
-    public static function create($params, $url,$isproxy,$proxyurl)
-    {
-        //get Token from Dtac
-        // return parent::g_create(get_class(), self::getUrl(), $params, $publickey, $secretkey);
-        return parent::dtac_create(get_class(), $params,$url,$isproxy,$proxyurl);
     }
 
     /**
@@ -75,7 +84,8 @@ class OmiseCharge extends OmiseApiResource
      */
     public function capture()
     {
-        $result = parent::execute(self::getUrl($this['id']).'/capture', parent::REQUEST_POST, parent::getResourceKey());
+        $result = parent::execute(self::getUrl($this['id']) . '/capture', parent::REQUEST_POST,
+            parent::getResourceKey());
         $this->refresh($result);
 
         return $this;
@@ -88,7 +98,8 @@ class OmiseCharge extends OmiseApiResource
      */
     public function reverse()
     {
-        $result = parent::execute(self::getUrl($this['id']).'/reverse', parent::REQUEST_POST, parent::getResourceKey());
+        $result = parent::execute(self::getUrl($this['id']) . '/reverse', parent::REQUEST_POST,
+            parent::getResourceKey());
         $this->refresh($result);
 
         return $this;
@@ -101,18 +112,9 @@ class OmiseCharge extends OmiseApiResource
      */
     public function refunds()
     {
-        $result = parent::execute(self::getUrl($this['id']).'/refunds', parent::REQUEST_GET, parent::getResourceKey());
+        $result = parent::execute(self::getUrl($this['id']) . '/refunds', parent::REQUEST_GET,
+            parent::getResourceKey());
 
         return new OmiseRefundList($result, $this['id'], $this->_publickey, $this->_secretkey);
-    }
-
-    /**
-     * @param  string $id
-     *
-     * @return string
-     */
-    private static function getUrl($id = '')
-    {
-        return OMISE_API_URL.self::ENDPOINT.'/'.$id;
     }
 }

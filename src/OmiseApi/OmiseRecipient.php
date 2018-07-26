@@ -23,9 +23,19 @@ class OmiseRecipient extends OmiseApiResource
     }
 
     /**
+     * @param  string $id
+     *
+     * @return string
+     */
+    private static function getUrl($id = '')
+    {
+        return OMISE_API_URL . self::ENDPOINT . '/' . $id;
+    }
+
+    /**
      * Creates a new recipient.
      *
-     * @param  array  $params
+     * @param  array $params
      * @param  string $publickey
      * @param  string $secretkey
      *
@@ -78,15 +88,5 @@ class OmiseRecipient extends OmiseApiResource
         } else {
             parent::g_reload(self::getUrl());
         }
-    }
-
-    /**
-     * @param  string $id
-     *
-     * @return string
-     */
-    private static function getUrl($id = '')
-    {
-        return OMISE_API_URL.self::ENDPOINT.'/'.$id;
     }
 }

@@ -2,4 +2,6 @@
 
 namespace OmiseApi\Exception;
 
-class OmiseFailedCaptureException extends OmiseException { }
+class OmiseFailedCaptureException extends OmiseException
+{
+}

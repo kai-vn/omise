@@ -23,6 +23,18 @@ class OmiseEvent extends OmiseApiResource
     }
 
     /**
+     * Generate request url.
+     *
+     * @param  string $id
+     *
+     * @return string
+     */
+    private static function getUrl($id = '')
+    {
+        return OMISE_API_URL . self::ENDPOINT . '/' . $id;
+    }
+
+    /**
      * (non-PHPdoc)
      *
      * @see OmiseApiResource::g_reload()
@@ -34,17 +46,5 @@ class OmiseEvent extends OmiseApiResource
         } else {
             parent::g_reload(self::getUrl());
         }
-    }
-
-    /**
-     * Generate request url.
-     *
-     * @param  string $id
-     *
-     * @return string
-     */
-    private static function getUrl($id = '')
-    {
-        return OMISE_API_URL.self::ENDPOINT.'/'.$id;
     }
 }

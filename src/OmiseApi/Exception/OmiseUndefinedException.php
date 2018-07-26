@@ -2,4 +2,6 @@
 
 namespace OmiseApi\Exception;
 
-class OmiseUndefinedException extends OmiseException { }
+class OmiseUndefinedException extends OmiseException
+{
+}

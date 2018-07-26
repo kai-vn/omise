@@ -23,6 +23,18 @@ class OmiseDispute extends OmiseApiResource
     }
 
     /**
+     * Generate request url.
+     *
+     * @param  string $id
+     *
+     * @return string
+     */
+    private static function getUrl($id = '')
+    {
+        return OMISE_API_URL . self::ENDPOINT . '/' . $id;
+    }
+
+    /**
      * (non-PHPdoc)
      *
      * @see OmiseApiResource::g_reload()
@@ -44,17 +56,5 @@ class OmiseDispute extends OmiseApiResource
     public function update($params)
     {
         parent::g_update(self::getUrl($this['id']), $params);
-    }
-
-    /**
-     * Generate request url.
-     *
-     * @param  string $id
-     *
-     * @return string
-     */
-    private static function getUrl($id = '')
-    {
-        return OMISE_API_URL.self::ENDPOINT.'/'.$id;
     }
 }

@@ -23,6 +23,16 @@ class OmiseTransaction extends OmiseApiResource
     }
 
     /**
+     * @param  string $id
+     *
+     * @return string
+     */
+    private static function getUrl($id = '')
+    {
+        return OMISE_API_URL . self::ENDPOINT . '/' . $id;
+    }
+
+    /**
      * (non-PHPdoc)
      *
      * @see OmiseApiResource::g_reload()
@@ -34,15 +44,5 @@ class OmiseTransaction extends OmiseApiResource
         } else {
             parent::g_reload(self::getUrl());
         }
-    }
-
-    /**
-     * @param  string $id
-     *
-     * @return string
-     */
-    private static function getUrl($id = '')
-    {
-        return OMISE_API_URL.self::ENDPOINT.'/'.$id;
     }
 }

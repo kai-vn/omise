@@ -2,8 +2,6 @@
 
 namespace OmiseApi\Res;
 
-use OmiseApi\Res\OmiseApiResource;
-
 class OmiseVaultResource extends OmiseApiResource
 {
     /**

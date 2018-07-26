@@ -23,10 +23,20 @@ class OmiseToken extends OmiseVaultResource
     }
 
     /**
+     * @param  string $id
+     *
+     * @return string
+     */
+    private static function getUrl($id = '')
+    {
+        return OMISE_VAULT_URL . self::ENDPOINT . '/' . $id;
+    }
+
+    /**
      * Creates a new token. Please note that this method should be used only
      * in development. In production please use Omise.js!
      *
-     * @param  array  $params
+     * @param  array $params
      * @param  string $publickey
      * @param  string $secretkey
      *
@@ -45,15 +55,5 @@ class OmiseToken extends OmiseVaultResource
     public function reload()
     {
         parent::g_reload(self::getUrl($this['id']));
-    }
-
-    /**
-     * @param  string $id
-     *
-     * @return string
-     */
-    private static function getUrl($id = '')
-    {
-        return OMISE_VAULT_URL.self::ENDPOINT.'/'.$id;
     }
 }

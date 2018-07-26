@@ -10,8 +10,10 @@ if (version_compare(PHP_VERSION, '5.4.0', '<')) {
     throw new \OmiseApi\Exception\OmiseException('PHP version >= 5.4.0 required');
 }
 
-class OmiseApi {
-    public static function requireDependencies() {
+class OmiseApi
+{
+    public static function requireDependencies()
+    {
         $requiredExtensions = ['xmlwriter', 'openssl', 'dom', 'hash', 'curl'];
         foreach ($requiredExtensions AS $ext) {
             if (!extension_loaded($ext)) {

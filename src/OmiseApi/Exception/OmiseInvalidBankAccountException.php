@@ -2,4 +2,6 @@
 
 namespace OmiseApi\Exception;
 
-class OmiseInvalidBankAccountException extends OmiseException { }
+class OmiseInvalidBankAccountException extends OmiseException
+{
+}

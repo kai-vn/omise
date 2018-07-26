@@ -2,4 +2,6 @@
 
 namespace OmiseApi\Exception;
 
-class OmiseInvalidRecipientException extends OmiseException { }
+class OmiseInvalidRecipientException extends OmiseException
+{
+}
