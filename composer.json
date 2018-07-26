@@ -1,5 +1,5 @@
 {
-  "name": "omise/omise-php",
+  "name": "kaido4492/omise",
   "description": "Omise API PHP Lib",
   "keywords": [
     "payment",
@@ -9,11 +9,11 @@
   "type": "library",
   "version": "1.0.0",
   "license": "MIT",
-  "homepage": "https://github.com/omise/omise-php.git",
+  "homepage": "https://github.com/kaido4492/omise.git",
   "authors": [
     {
-      "name": "omise",
-      "email": "apps@omise.co"
+      "name": "Kai",
+      "email": "kai@tigren.com"
     }
   ],
   "require": {
