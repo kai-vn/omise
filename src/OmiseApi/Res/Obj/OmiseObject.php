@@ -2,6 +2,10 @@
 
 namespace OmiseApi\Res\Obj;
 
+use ArrayAccess;
+use Iterator;
+use Countable;
+
 class OmiseObject implements ArrayAccess, Iterator, Countable
 {
     // Store the attributes of the object.
