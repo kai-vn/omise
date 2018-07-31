@@ -2,6 +2,7 @@
 
 namespace OmiseApi\Res;
 
+use Exception;
 use OmiseApi\Exception\OmiseException;
 use OmiseApi\Res\Obj\OmiseObject;
 
